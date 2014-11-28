@@ -1,0 +1,11 @@
+﻿<Window x:Class="DeviceTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525" Closed="Window_Closed" Loaded="Window_Loaded">
+    <Grid>
+        <Label Content="Devices:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="DevicesComboBox" HorizontalAlignment="Left" Margin="63,13,0,0" VerticalAlignment="Top" Width="215" Height="23" SelectionChanged="DeviceList_SelectionChanged" IsReadOnly="True"/>
+        <StackPanel HorizontalAlignment="Left" Height="253" Margin="10,51,0,0" VerticalAlignment="Top" Width="498" />
+
+    </Grid>
+</Window>

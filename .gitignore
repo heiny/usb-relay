@@ -1,0 +1,12 @@
+# visual studio
+*.suo
+*.user
+bin
+obj
+
+# C++
+*.sdf
+*.opensdf
+ipch
+Debug
+Release
