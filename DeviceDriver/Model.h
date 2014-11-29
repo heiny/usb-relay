@@ -3,7 +3,7 @@
 using namespace System;
 
 namespace DeviceDriver {
-    public enum DeviceType
+    public enum class DeviceType : Int32
     {
         SingleChannel = 1,
         DoubleChannel = 2,
@@ -11,7 +11,7 @@ namespace DeviceDriver {
         EightChannel = 8
     };
 
-    public enum ChannelIndex {
+    public enum class ChannelIndex : Int32 {
         One = 1,
         Two = 2,
         Three = 3,
@@ -22,15 +22,18 @@ namespace DeviceDriver {
         Eight = 8
     };
 
-    public enum ChannelState {
+    public enum class ChannelState : Int32 {
         Closed = 0,
         Opened = 1
     };
 
-    public ref class USBRelayChannelInfo {
-    public:
-        property ChannelIndex Index;
-        property ChannelState State;
+    public interface class IRelayChannelInfo {
+        property ChannelIndex Index {
+            ChannelIndex get();
+        }
+        property ChannelState State {
+            ChannelState get();
+        }
     };
 
     public interface class IRelayDeviceInfo {
@@ -47,15 +50,15 @@ namespace DeviceDriver {
 
     public interface class IRelayController : public IDisposable {
         System::Collections::Generic::List<IRelayDeviceInfo^> ^ ListDevices();
-        System::Collections::Generic::List<USBRelayChannelInfo^> ^ ListChannels(IRelayDeviceInfo^ device);
+        System::Collections::Generic::List<IRelayChannelInfo^> ^ ListChannels(IRelayDeviceInfo^ device);
 
-        USBRelayChannelInfo^ GetChannelInfo(IRelayDeviceInfo^ device, ChannelIndex channel);
+        IRelayChannelInfo^ GetChannelInfo(IRelayDeviceInfo^ device, ChannelIndex channel);
 
         bool ConnectDevice(IRelayDeviceInfo^ device);
 
         bool OpenChannel(IRelayDeviceInfo^ device, ChannelIndex channel);
         bool CloseChannel(IRelayDeviceInfo^ device, ChannelIndex channel);
-        USBRelayChannelInfo^ ToggleChannel(IRelayDeviceInfo^ device, ChannelIndex channel);
+        IRelayChannelInfo^ ToggleChannel(IRelayDeviceInfo^ device, ChannelIndex channel);
 
         bool OpenAllChannels(IRelayDeviceInfo^ device);
         bool CloseAllChannels(IRelayDeviceInfo^ device);

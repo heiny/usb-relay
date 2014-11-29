@@ -8,6 +8,12 @@ using namespace System;
 using namespace System::Runtime::InteropServices;
 
 namespace DeviceDriver {
+    private ref class USBRelayChannelInfo : public IRelayChannelInfo {
+    public:
+        virtual property ChannelIndex Index;
+        virtual property ChannelState State;
+    };
+
     private ref class USBRelayDeviceInfo : public IRelayDeviceInfo {
     public:
         virtual property String^ SerialNumber;
@@ -23,15 +29,15 @@ namespace DeviceDriver {
         ~RelayController();
 
         virtual System::Collections::Generic::List<IRelayDeviceInfo^> ^ ListDevices();
-        virtual System::Collections::Generic::List<USBRelayChannelInfo^> ^ ListChannels(IRelayDeviceInfo^ device);
+        virtual System::Collections::Generic::List<IRelayChannelInfo^> ^ ListChannels(IRelayDeviceInfo^ device);
 
-        virtual USBRelayChannelInfo^ GetChannelInfo(IRelayDeviceInfo^ device, ChannelIndex channel);
+        virtual IRelayChannelInfo^ GetChannelInfo(IRelayDeviceInfo^ device, ChannelIndex channel);
 
         virtual bool ConnectDevice(IRelayDeviceInfo^ device);
 
         virtual bool OpenChannel(IRelayDeviceInfo^ device, ChannelIndex channel);
         virtual bool CloseChannel(IRelayDeviceInfo^ device, ChannelIndex channel);
-        virtual USBRelayChannelInfo^ ToggleChannel(IRelayDeviceInfo^ device, ChannelIndex channel);
+        virtual IRelayChannelInfo^ ToggleChannel(IRelayDeviceInfo^ device, ChannelIndex channel);
 
         virtual bool OpenAllChannels(IRelayDeviceInfo^ device);
         virtual bool CloseAllChannels(IRelayDeviceInfo^ device);
@@ -47,5 +53,7 @@ namespace DeviceDriver {
         USBRelayChannelInfo^ CreateChannelInfo(ChannelIndex channel, unsigned int status);
         ChannelState GetState(ChannelIndex channel, unsigned int status);
         USBRelayDeviceInfo^ GetRealDevice(IRelayDeviceInfo^ device);
+        USBRelayChannelInfo^ GetChannel(USBRelayDeviceInfo^ device, ChannelIndex channel);
+        void AssertDeviceConnected(USBRelayDeviceInfo^ device);
     };
 }
