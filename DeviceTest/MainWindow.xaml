@@ -1,7 +1,7 @@
 ﻿<Window x:Class="DeviceTest.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="300" Width="400" Loaded="Window_Loaded"
+        Title="USB Relay Controller Tester" Height="300" Width="400" Loaded="Window_Loaded"
         MinHeight="300"
         MinWidth="400">
     <Grid>
