@@ -62,6 +62,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>..\usb_relay_device\usb_relay_device.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\usb_relay_device;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <DelayLoadDLLs>usb_relay_device.dll</DelayLoadDLLs>
     </Link>
     <ProjectReference>
       <UseLibraryDependencyInputs>
@@ -80,6 +81,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>..\usb_relay_device\usb_relay_device.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\usb_relay_device;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <DelayLoadDLLs>usb_relay_device.dll</DelayLoadDLLs>
     </Link>
     <ProjectReference>
       <UseLibraryDependencyInputs>
